@@ -1,9 +1,12 @@
 require 'invoice'
+require 'inventory'
 
 class InvoicingSystem
-  def initialize(products); end
+  def initialize(products)
+    @inventory = Inventory.new(products)
+  end
 
-  def generate_invoice(_order_items)
-    Invoice.new
+  def generate_invoice(order)
+    Invoice.new(@inventory, order)
   end
 end

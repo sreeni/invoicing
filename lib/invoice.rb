@@ -1,5 +1,7 @@
 class Invoice
-    def amount
-        "$22.89"
-    end
+  def initialize(inventory, order); end
+
+  def amount
+    '$22.89'
+  end
 end

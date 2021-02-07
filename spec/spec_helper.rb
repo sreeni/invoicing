@@ -13,6 +13,13 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+steps_dir = File.join(File.dirname(__FILE__), 'acceptance', 'steps')
+glob_path = "#{steps_dir}/**/*steps.rb"
+Dir.glob(glob_path) do |f|
+  load f, false
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -95,4 +102,5 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+  [InventorySteps, OrderSteps, InvoiceSteps].each { |s| config.include s }
 end

@@ -1,6 +1,6 @@
 Feature: Generating an Invoice
     Background:
-        Given an inventory of packs:
+        Given an inventory of products:
             | Product     | Quantity | Price  |
             | Watermelons | 3        | $6.99  |
             | Watermelons | 5        | $8.99  |

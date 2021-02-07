@@ -1,0 +1,7 @@
+{
+    "ruby.useBundler": true,
+    "ruby.format": "rubocop",
+    "ruby.rubocop.useBundler": true,
+    "ruby.rubocop.suppressRubocopWarnings": true,
+    "editor.formatOnSave": true,
+}

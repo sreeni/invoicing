@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'money', '~> 6.14'
-
 group :test do
   gem 'guard-rspec', '~> 4.7'
   gem 'rspec', '~> 3.10'
@@ -17,3 +15,5 @@ group :development do
   gem 'rake', '~> 13.0'
   gem 'rubocop-rake', '~> 0.5.1'
 end
+
+gem "monetize", "~> 1.10"

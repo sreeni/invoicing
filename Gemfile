@@ -4,13 +4,16 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'rspec', '~> 3.10', group: :test
-gem 'turnip', '~> 4.2', group: :test
+gem 'money', '~> 6.14'
 
-gem 'rubocop', '~> 1.9', group: :development
+group :test do
+  gem 'guard-rspec', '~> 4.7'
+  gem 'rspec', '~> 3.10'
+  gem 'rubocop', '~> 1.9'
+  gem 'turnip', '~> 4.2'
+end
 
-gem 'guard-rspec', '~> 4.7', group: :development
-
-gem 'rake', '~> 13.0', group: :":development"
-
-gem 'rubocop-rake', '~> 0.5.1', group: :development
+group :development do
+  gem 'rake', '~> 13.0'
+  gem 'rubocop-rake', '~> 0.5.1'
+end

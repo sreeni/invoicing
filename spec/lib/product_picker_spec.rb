@@ -2,25 +2,53 @@ require 'product_picker'
 
 RSpec.describe ProductPicker do
   let(:picker) { ProductPicker.new }
-
+  let(:order_item) { double(:order_item, quantity: order_quantity) }
   let(:picked_items) { picker.pick(products, order_item) }
 
   describe '#pick' do
+    let(:subject) { picked_items }
     context 'when order quantity matches the pack size' do
-      let(:order_item) { double(:order_item, quantity: 5) }
+      let(:order_quantity) { 5 }
       let(:products) do
-        [double(:product1, name: '3 pack', size: 3), double(:product2, name: '5 pack', size: 5)]
+        [double(:product1, name: '3 pack', size: 3),
+         double(:product2, name: '5 pack', size: 5)]
       end
 
-      describe('picked item') do
-        let(:subject) { picked_items.first }
+      describe('picked products') do
+        let(:subject) { picked_items.map(&:name) }
 
-        it 'should match the ordered product' do
-          expect(subject.name).to eq('5 pack')
+        it { is_expected.to eq ['5 pack'] }
+      end
+
+      describe('quantity') do
+        let(:subject) { picked_items.map(&:quantity) }
+
+        it { is_expected.to eq [1] }
+      end
+    end
+
+    context 'when order quantity requires selection of multiple product sizes' do
+      let(:order_quantity) { 14 }
+      let(:products) do
+        [
+          double(:product1, name: '2 pack', size: 2),
+          double(:product1, name: '3 pack', size: 3),
+          double(:product2, name: '5 pack', size: 5)
+        ]
+      end
+
+      describe('picked products') do
+        let(:subject) { picked_items.map(&:name) }
+
+        it 'should match the right product' do
+          pending('to be implemented')
+          is_expected.to eq ['5 pack', '2 pack']
         end
 
-        it 'should have the correct quantity' do
-          expect(subject.quantity).to eq(1)
+        it 'should match the order quantity' do
+          pending('to be implemented')
+          actual = picked_items.map(&:quantity)
+          expect(actual).to eq [2, 2]
         end
       end
     end

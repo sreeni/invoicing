@@ -1,3 +1,4 @@
+require 'order_item'
 class Order
   attr_accessor :items
 

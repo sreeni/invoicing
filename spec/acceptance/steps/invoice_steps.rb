@@ -6,6 +6,6 @@ module InvoiceSteps
   end
 
   step 'the invoice amount should be :amount' do |amount|
-    expect(@invoice.amount).to eq(amount)
+    expect(@invoice.amount.format).to eq(amount)
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe InvoicingSystem do
   before(:each) do
     allow(Inventory).to receive(:new).and_return(inventory)
   end
-  describe 'initialization' do
+  describe '#new' do
     it 'should initialize inventory with products' do
       expect(Inventory).to receive(:new).with(products)
       InvoicingSystem.new(products)

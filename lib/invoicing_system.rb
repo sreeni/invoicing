@@ -1,6 +1,7 @@
 require 'invoice'
 require 'inventory'
 require 'order'
+require 'money_config'
 
 class InvoicingSystem
   def initialize(products)

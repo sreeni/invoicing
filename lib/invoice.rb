@@ -1,8 +1,5 @@
 require 'product_picker'
 require 'money'
-Money.default_currency = Money::Currency.new('AUD')
-Money.rounding_mode = BigDecimal::ROUND_HALF_UP
-Money.locale_backend = :currency
 
 class Invoice
   def initialize(inventory, order)
@@ -12,12 +9,12 @@ class Invoice
 
   def amount
     picked_products = @order.items.map do |item|
-      products = @inventory.get_products(item.name)
+      products = @inventory.products_by_name(item.name)
       ProductPicker.new.pick(products, item)
     end
 
-    picked_products.compact.reduce(Money.new(0)) do |acc, product|
-      acc + Money.new(product.price * product.quantity * 100)
+    picked_products.flatten.compact.reduce(Money.new(0)) do |acc, product|
+      acc + product.price
     end
   end
 end

@@ -2,7 +2,7 @@
 
 Solution Description
 
-The solution for this coding challenge is a set of acceptance test based on [Turnip](https://github.com/jnicklas/turnip)
+The example input for this problem is contained in the acceptance tests based on [Turnip](https://github.com/jnicklas/turnip)
 
 Feature files are present in `spec/acceptance/features`
 

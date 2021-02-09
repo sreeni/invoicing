@@ -22,7 +22,7 @@ Feature: Generating an Invoice
         Then the invoice amount should be "$22.89"
 
     Scenario: Customer places order that needs optimization based on pack size
-        Given a customer order (pending):
+        Given a customer order:
             | Product     | Quantity |
             | Watermelons | 10       |
             | Pineapples  | 14       |

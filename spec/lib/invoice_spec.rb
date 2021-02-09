@@ -20,25 +20,29 @@ RSpec.describe Invoice do
     let(:pick_item1) { double(:pick_item1, price: Money.new(700)) }
     let(:pick_item2) { double(:pick_item2, price: Money.new(1350)) }
 
+    let(:picker1) { double(:picker1, pick: pick_item1) }
+    let(:picker2) { double(:picker2, pick: pick_item2) }
+
     before(:each) do
-      allow(ProductPicker).to receive(:new).and_return(picker)
       allow(order).to receive(:items).and_return([order_item1, order_item2])
+
       allow(inventory).to receive(:products_by_name).with('product 1').and_return(products1)
       allow(inventory).to receive(:products_by_name).with('product 2').and_return(products2)
-      allow(picker).to receive(:pick).with(products1,
-                                           order_item1).and_return(pick_item1)
-      allow(picker).to receive(:pick).with(products2,
-                                           order_item2).and_return(pick_item2)
+
+      allow(ProductPicker).to receive(:new).with(products1,
+                                                 order_item1).and_return(picker1)
+      allow(ProductPicker).to receive(:new).with(products2,
+                                                 order_item2).and_return(picker2)
     end
 
     it 'should use a product picker against each order item to fulfill order' do
       expect(inventory).to receive(:products_by_name).with('product 1')
       expect(inventory).to receive(:products_by_name).with('product 2')
 
-      expect(picker).to receive(:pick).with(products1,
-                                            order_item1)
-      expect(picker).to receive(:pick).with(products2,
-                                            order_item2)
+      expect(ProductPicker).to receive(:new).with(products1,
+                                                  order_item1)
+      expect(ProductPicker).to receive(:new).with(products2,
+                                                  order_item2)
       invoice.amount
     end
 

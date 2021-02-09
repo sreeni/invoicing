@@ -12,8 +12,18 @@ RSpec.describe Order do
     end
   end
 
+  describe '#new' do
+    it 'should create order items from the input data' do
+      order_data.each_with_index do |data_item, _index|
+        expect(OrderItem).to receive(:new).with(data_item)
+      end
+      Order.new(order_data)
+    end
+  end
+
   describe '#items' do
-    subject(:items) { order.items }
-    it { is_expected.to eq(order_items) }
+    it 'should contain the items representing an order' do
+      expect(order.items).to eq(order_items)
+    end
   end
 end

@@ -7,25 +7,25 @@ RSpec.describe ProductPicker do
 
   describe '#pick' do
     let(:subject) { picked_items }
-    # context 'when order quantity matches the pack size' do
-    #   let(:order_quantity) { 5 }
-    #   let(:products) do
-    #     [double(name: '3 pack', size: 3),
-    #      double(name: '5 pack', size: 5)]
-    #   end
+    context 'when order quantity matches the pack size' do
+      let(:order_quantity) { 5 }
+      let(:products) do
+        [double(name: '3 pack', size: 3),
+         double(name: '5 pack', size: 5)]
+      end
 
-    #   describe('picked products') do
-    #     let(:subject) { picked_items.map(&:name) }
+      describe('picked products') do
+        let(:subject) { picked_items.map(&:name) }
 
-    #     it { is_expected.to eq ['5 pack'] }
-    #   end
+        it { is_expected.to eq ['5 pack'] }
+      end
 
-    #   describe('quantity') do
-    #     let(:subject) { picked_items.map(&:quantity) }
+      describe('quantity') do
+        let(:subject) { picked_items.map(&:quantity) }
 
-    #     it { is_expected.to eq [1] }
-    #   end
-    # end
+        it { is_expected.to eq [1] }
+      end
+    end
 
     context 'when order quantity requires selection of multiple product sizes' do
       let(:order_quantity) { 14 }

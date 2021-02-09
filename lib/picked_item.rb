@@ -2,7 +2,7 @@ require 'forwardable'
 
 class PickedItem
   extend Forwardable
-  def_delegators :@product, :name
+  def_delegators :@product, :name, :size
 
   attr_accessor :quantity
 
@@ -11,7 +11,11 @@ class PickedItem
     @quantity = quantity
   end
 
-  def price
+  def total_price
     @product.price * @quantity
+  end
+
+  def unit_price
+    @product.price
   end
 end

@@ -17,8 +17,8 @@ RSpec.describe Invoice do
 
     let(:invoice) { Invoice.new(inventory, order) }
 
-    let(:pick_item1) { double(:pick_item1, price: Money.new(700)) }
-    let(:pick_item2) { double(:pick_item2, price: Money.new(1350)) }
+    let(:pick_item1) { double(:pick_item1, total_price: Money.new(700)) }
+    let(:pick_item2) { double(:pick_item2, total_price: Money.new(1350)) }
 
     let(:picker1) { double(:picker1, pick: pick_item1) }
     let(:picker2) { double(:picker2, pick: pick_item2) }
@@ -48,6 +48,12 @@ RSpec.describe Invoice do
 
     it 'should calculate total amount from picked item price' do
       expect(invoice.amount.format).to eq('$20.50')
+    end
+
+    describe '#items' do
+      it 'should contain item details' do
+        expect(invoice.items).to eq([pick_item1, pick_item2])
+      end
     end
   end
 end
